@@ -1,2 +1,2 @@
 # simple-modal
-Simple, dependency free modal code
+Simple, dependency free javascript modal
