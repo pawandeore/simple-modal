@@ -1,0 +1,51 @@
+body.modal-active
+    overflow: hidden
+
+.modal
+    display: none
+    position: fixed
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    overflow-y: auto
+    z-index: 1000
+    background-color: rgba(0, 0, 0, 0)
+    transition: all .35s ease-in-out
+
+    &.active
+        display: block
+        background-color: rgba(0, 0, 0, .55)
+
+        .modal-dialog
+            transition-delay: 200ms
+            transform: translate(0, 0)
+
+        .modal-content
+            transition-delay: 200ms
+            opacity: 1
+
+
+.modal-dialog, .modal-content
+    position: relative
+    display: block
+    transition: all .3s ease-in-out
+
+.modal-dialog
+    margin: 30px auto
+    transform: translate(0, -50%)
+    width: 500px
+
+.modal-content
+    opacity: 0
+    background-color: white
+    padding: 10px 15px
+
+.modal-xl
+    width: 750px
+.modal-lg
+    width: 600px
+.modal-md
+    width: 500px
+.modal-sm
+    width: 400px
