@@ -1,5 +1,13 @@
+
+$transitionDelay: 100ms
+
+
 body.modal-active
     overflow: hidden
+
+.modal,
+.modal *
+    box-sizing: border-box
 
 .modal
     display: none
@@ -18,14 +26,16 @@ body.modal-active
         background-color: rgba(0, 0, 0, .55)
 
         .modal-dialog
-            transition-delay: 200ms
+            transition-delay: $transitionDelay
             transform: translate(0, 0)
 
         .modal-content
-            transition-delay: 200ms
+            transition-delay: $transitionDelay
             opacity: 1
 
 .modal-close
+    display: block
+    text-align: right
     cursor: pointer
 
 .modal-dialog, .modal-content
@@ -43,11 +53,14 @@ body.modal-active
     background-color: white
     padding: 10px 15px
 
-.modal-xl
+.modal-xl .modal-dialog
+    width: 900px
+
+.modal-lg .modal-dialog
     width: 750px
-.modal-lg
-    width: 600px
-.modal-md
+
+.modal-md .modal-dialog
     width: 500px
-.modal-sm
+
+.modal-sm .modal-dialog
     width: 400px
