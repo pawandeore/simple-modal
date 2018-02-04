@@ -47,22 +47,31 @@ body.modal-active
     margin: 30px auto
     transform: translate(0, -50%)
     width: 500px
+    max-width: 94%
 
 .modal-content
     opacity: 0
     background-color: white
     padding: 10px 15px
-    
+
     border-radius: 3px
 
-.modal-xl .modal-dialog
-    width: 900px
-
-.modal-lg .modal-dialog
-    width: 750px
-
-.modal-md .modal-dialog
-    width: 500px
 
 .modal-sm .modal-dialog
     width: 400px
+
+@media screen and (min-width: 576px)
+    .modal-xl .modal-dialog
+        width: 94%
+    .modal-md .modal-dialog
+        width: 500px
+
+@media screen and (min-width: 768px)
+    .modal-xl .modal-dialog
+        width: 90%
+    .modal-lg .modal-dialog
+        width: 750px
+
+@media screen and (min-width: 992px)
+    .modal-xl .modal-dialog
+        width: 900px
