@@ -43,11 +43,18 @@
     }
 
     function _hideAll(){
-        Array.prototype.slice.call(document.querySelectorAll('.modal.active'))
+        document.querySelectorAll('.modal.active')
             .forEach(function(el){
                 _hideModal(el);
             });
     }
+
+
+    /*
+        ===============
+        EVENT LISTENERS
+        ===============
+    */
 
     // Exit key should close any open modals
     document.addEventListener('keyup', function(event){
@@ -56,6 +63,7 @@
         }
     });
 
+    // Click delegation
     document.addEventListener('click', function(e){
         var el = e.target;
 
@@ -73,8 +81,9 @@
 
 
     // Expose modal functionality
+
     // Named elements ([id], [name]) appear as properties on window object
-    // This ensures that we are only overriding window.modal if window.modal is a DOM elem
+    // This ensures that we are only overriding window.modal if window.modal is not a fn
     //https://stackoverflow.com/a/3434388
     if(typeof window.modal !== 'function') window.modal = modal;
 
