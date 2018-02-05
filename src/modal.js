@@ -1,7 +1,5 @@
 'use strict';
 
-
-
 (function(){
 
     var delay = 250;
@@ -49,6 +47,22 @@
             });
     }
 
+    function _parents(el, cb){
+        if( cb(el) ) return el;
+
+        while(el.parentNode !== document){
+            el = el.parentNode;
+            if( cb(el) ) return el;
+        }
+        return undefined;
+    }
+
+    function _findParentToggle(el){
+        return _parents(el, function(el){
+            return el.hasAttribute('data-toggle') && el.getAttribute('data-toggle') === 'modal';
+        });
+    }
+
 
     /*
         ===============
@@ -67,8 +81,12 @@
     document.addEventListener('click', function(e){
         var el = e.target;
 
-        if(el.getAttribute('data-toggle') == 'modal'){
-            var modal = document.querySelector(el.getAttribute('data-target'));
+        // Handle case where target element was clicked may be nested anywhere
+        // inside of an element with a data-toggle of 'modal'
+        var parentToggle = _findParentToggle(el);
+
+        if(parentToggle){
+            var modal = document.querySelector(parentToggle.getAttribute('data-target'));
             _showModal(modal);
         }
         else if(el.classList.contains('modal')){
