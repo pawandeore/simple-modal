@@ -63,6 +63,12 @@
         });
     }
 
+    function _findParentModal(el){
+        return _parents(el, function(el){
+            return el.classList.contains('modal');
+        });
+    }
+
 
     /*
         ===============
@@ -81,19 +87,20 @@
     document.addEventListener('click', function(e){
         var el = e.target;
 
-        // Handle case where target element was clicked may be nested anywhere
-        // inside of an element with a data-toggle of 'modal'
-        var parentToggle = _findParentToggle(el);
+        if(el.classList.contains('modal')){ // click outside of modal body
+            return _hideModal(el);
+        }
+        else if(el.classList.contains('modal-close')){ // click .modal-close elem
+            var parentModal = _findParentModal(el);
+            return _hideModal(parentModal);
+        }
 
+        // Handle case where e.target may be nested anywhere
+        // inside an element with data-toggle="modal"
+        var parentToggle = _findParentToggle(el);
         if(parentToggle){
-            var modal = document.querySelector(parentToggle.getAttribute('data-target'));
-            _showModal(modal);
-        }
-        else if(el.classList.contains('modal')){
-            _hideModal(el);
-        }
-        else if(el.classList.contains('modal-close')){
-            _hideAll();
+            var target = parentToggle.getAttribute('data-target');
+            _showModal(document.querySelector(target));
         }
     });
 
