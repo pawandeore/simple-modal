@@ -50,7 +50,7 @@
     function _parents(el, cb){
         if( cb(el) ) return el;
 
-        while(el.parentNode !== document){
+        while(el && el.parentNode !== document){
             el = el.parentNode;
             if( cb(el) ) return el;
         }
@@ -59,6 +59,7 @@
 
     function _findParentToggle(el){
         return _parents(el, function(el){
+            if(!el) return;
             return el.hasAttribute('data-toggle') && el.getAttribute('data-toggle') === 'modal';
         });
     }
