@@ -41,7 +41,7 @@
     }
 
     function _hideAll(){
-        document.querySelectorAll('.modal.active')
+        [].slice.call(document.querySelectorAll('.modal.active'))
             .forEach(function(el){
                 _hideModal(el);
             });
