@@ -1,4 +1,4 @@
-# simple-modal
+# simple-modal code
 
 Simple, dependency free javascript modal
 
